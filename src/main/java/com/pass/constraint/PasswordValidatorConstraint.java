@@ -33,6 +33,12 @@ public class PasswordValidatorConstraint {
                 System.out.println(validator.getMessage(result));
                 return result;
             }
+            if (result.getCriteriaResultDetail() != null && result.getCriteriaResultDetail().size() < 3) {
+                return new PasswordCriteriaResult(true);
+            } else {
+                System.out.println(validator.getMessage(result));
+                return result;
+            }
         }
         return new PasswordCriteriaResult(false);
     }
