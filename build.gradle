@@ -7,6 +7,7 @@ version '1.0-SNAPSHOT'
 
 def jmockitversion = '1.48'
 def junitversion ='5.9.0'
+def lombokversion='1.18.24'
 
 repositories {
     mavenCentral()
@@ -17,6 +18,8 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitversion"
     testImplementation "org.jmockit:jmockit:$jmockitversion"
     testImplementation "org.junit.platform:junit-platform-suite-engine:1.9.1"
+    compileOnly("org.projectlombok:lombok:$lombokversion")
+    annotationProcessor("org.projectlombok:lombok:$lombokversion")
 }
 
 test {
