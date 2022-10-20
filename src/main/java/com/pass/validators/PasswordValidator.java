@@ -43,6 +43,14 @@ public class PasswordValidator implements Criteria {
             result.getCriteriaResultDetail().add(new PasswordCriteriaResultDetail(ERROR_CODE_NULL, null));
             return result;
         }
+        for (Criteria rule : criteriaList) {
+            // do not want to change the original result so one more object declared
+            final PasswordCriteriaResult criteriaResult = rule.validate(password);
+            if (!criteriaResult.isValid()) {
+                result.setValid(false);
+                result.getCriteriaResultDetail().addAll(criteriaResult.getCriteriaResultDetail());
+            }
+        }
         return result;
     }
 }
