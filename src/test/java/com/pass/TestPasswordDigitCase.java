@@ -2,6 +2,7 @@ package com.pass;
 
 import com.pass.criteria.Criteria;
 import com.pass.criteria.PasswordCriteriaResult;
+import com.pass.criteria.PasswordDigitCriteria;
 import com.pass.criteria.PasswordUpperCaseCriteria;
 import com.pass.validators.PasswordValidator;
 import com.pass.validators.i18n.I18nMessageResolver;
