@@ -37,4 +37,13 @@ public class TestPasswordUpperCase {
         PasswordCriteriaResult result = passwordValidator.validate("1q");
         Assertions.assertFalse(result.isValid());
     }
+
+    @Test
+    public void testPasswordUpperCase_Pass() {
+        criteriaList = new ArrayList<>();
+        criteriaList.add(new PasswordUpperCaseCriteria(1));
+        passwordValidator = new PasswordValidator(criteriaList);
+        PasswordCriteriaResult result = passwordValidator.validate("1Q");
+        Assertions.assertTrue(result.isValid());
+    }
 }
