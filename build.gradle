@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'com.pass'
+version '1.0-SNAPSHOT'
+
+def jmockitversion = '1.48'
+def junitversion ='5.9.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitversion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitversion"
+    testImplementation "org.jmockit:jmockit:$jmockitversion"
+    testImplementation "org.junit.platform:junit-platform-suite-engine:1.9.1"
+}
+
+test {
+    jvmArgs "-javaagent:${classpath.find { it.name.contains("jmockit") }.absolutePath}"
+    useJUnitPlatform()
+}
