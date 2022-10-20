@@ -36,4 +36,13 @@ public class TestPasswordLength {
         PasswordCriteriaResult result = passwordValidator.validate("");
         Assertions.assertFalse(result.isValid());
     }
+
+    @Test
+    public  void testPasswordLength_Pass() {
+        criteriaList = new ArrayList<>();
+        criteriaList.add(new PasswordLengthCriteria(8));
+        passwordValidator = new PasswordValidator(criteriaList);
+        PasswordCriteriaResult result = passwordValidator.validate("test@123");
+        Assertions.assertTrue(result.isValid());
+    }
 }
