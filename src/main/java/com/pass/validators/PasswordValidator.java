@@ -8,6 +8,7 @@ import com.pass.validators.i18n.PropertiesMessageResolver;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class PasswordValidator implements Criteria {
 
@@ -43,14 +44,14 @@ public class PasswordValidator implements Criteria {
             result.getCriteriaResultDetail().add(new PasswordCriteriaResultDetail(ERROR_CODE_NULL, null));
             return result;
         }
-        for (Criteria rule : criteriaList) {
-            // do not want to change the original result so one more object declared
+
+        criteriaList.parallelStream().forEach(rule -> {
             final PasswordCriteriaResult criteriaResult = rule.validate(password);
             if (!criteriaResult.isValid()) {
                 result.setValid(false);
                 result.getCriteriaResultDetail().addAll(criteriaResult.getCriteriaResultDetail());
             }
-        }
+        });
         return result;
     }
 }
